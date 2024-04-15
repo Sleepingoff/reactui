@@ -5,8 +5,8 @@ import StyleDictionary from "style-dictionary";
 // that is installed as a dependency of this package.
 registerTransforms(StyleDictionary);
 
-const sd = StyleDictionary.extend({
-  source: ["src/assets/design/tokens.json"], // <-- make sure to have this match your token files!!!
+const sd = new StyleDictionary({
+  source: ["src/assets/design/tokens.json"],
   platforms: {
     css: {
       transformGroup: "tokens-studio",
