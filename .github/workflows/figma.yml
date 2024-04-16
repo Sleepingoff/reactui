@@ -16,24 +16,31 @@ permissions:
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 20
       - name: Install dependencies
-        run: yarn install
-      # 디자인 파일 변환 후 생성된 파일도 push해서 main 브랜치로 병합하는 PR을 생성
+        run:
+          yarn install
+          #디자인 토큰에서 계산 처리해주는 1차 가공
       - name: Run Token Transformer
-        run: |
-          yarn token-transfer
-          git config --global user.name "Sleepingoff" 
-          git config --global user.email "justjh30@gmail.com"
-          git add .
-          git commit -m '피그마 디자인 파일 변환'
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        uses: ./.github/workflows/push.yml
+        with:
+          commits: "피그마 디자인 토큰 파일 변환"
+          run: |
+            yarn run token-transformer ./src/assets/design/tokens.json ./src/assets/design/transfer.json
+          #디자인 토큰을 스타일 파일로 변환하는 2차 가공
+      - name: Make Token Scss
+        if: success()
+        uses: ./.github/workflows/push.yml
+        with:
+          commits: "디자인 토큰 스타일로 변환"
+          run: |
+            yarn token-transfer
+
       - name: Create Pull Request
         run: gh pr create -B main -H design --title '💄 디자인 토큰 업데이트' --body '디자인 토큰이 업데이트 후 변환작업을 수행했습니다.'
         env:
