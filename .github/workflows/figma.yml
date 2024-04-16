@@ -8,6 +8,11 @@ on:
     paths:
       - "src/assets/design/tokens.json"
 
+permissions:
+  pull-requests: write
+  packages: read
+  contents: write
+
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
