@@ -1,26 +1,25 @@
-import { registerTransforms } from "@tokens-studio/sd-transforms";
 import StyleDictionary from "style-dictionary";
 
-// will register them on StyleDictionary object
-// that is installed as a dependency of this package.
-registerTransforms(StyleDictionary);
-
-const sd = new StyleDictionary({
-  source: ["src/assets/design/tokens.json"],
+const options = {
+  source: ["./src/assets/design/transfer.json"],
   platforms: {
-    css: {
-      transformGroup: "tokens-studio",
-      transforms: ["name/kebab"], // <-- add a token name transform for generating token names, default is camel
+    scss: {
+      // transformGroup: "tokens-studio",
+      transforms: ["name/kebab"],
       buildPath: "src/assets/design/",
       files: [
         {
           destination: "variables.scss",
-          format: "css/variables",
+          format: "scss/variables",
         },
       ],
     },
   },
+};
+
+const sd = new StyleDictionary(options, {
+  verbosity: "verbose",
+  warnings: "warn",
 });
 
-sd.cleanAllPlatforms();
 sd.buildAllPlatforms();
