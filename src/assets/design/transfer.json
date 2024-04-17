@@ -1,0 +1,81 @@
+{
+  "color": {
+    "wb-100": {
+      "value": "#ffffff",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "wb-200": {
+      "value": "#f5f5f5",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "wb-300": {
+      "value": "#d9d9d9",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "wb-400": {
+      "value": "#000000",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "semantic-red": {
+      "value": "#fd5252",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "semantic-yellow": {
+      "value": "#ffd954",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "semantic-green": {
+      "value": "#6bca5c",
+      "type": "color",
+      "parent": "variables/Mode 1",
+      "description": ""
+    },
+    "wb-470": {
+      "value": "#000000b3",
+      "type": "color",
+      "description": ""
+    },
+    "wb-480": {
+      "value": "#000000cc",
+      "type": "color"
+    },
+    "red-200": {
+      "value": "#ff7171",
+      "type": "color"
+    }
+  },
+  "round-default": {
+    "value": "8px",
+    "type": "dimension"
+  },
+  "round-small": {
+    "value": "4px",
+    "type": "dimension"
+  },
+  "round-big": {
+    "value": "16px",
+    "type": "dimension"
+  },
+  "tokenSetOrder": {
+    "0": {
+      "value": "global",
+      "type": "other"
+    },
+    "1": {
+      "value": "variables/light",
+      "type": "other"
+    }
+  }
+}
