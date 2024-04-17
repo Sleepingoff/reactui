@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,12 +15,12 @@
     "token-transfer": "node design.js"
   },
   "dependencies": {
-    "@tokens-studio/sd-transforms": "^0.15.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^8.0.4"
   },
   "devDependencies": {
+    "@tokens-studio/sd-transforms": "^0.15.2",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
