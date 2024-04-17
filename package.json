@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -25,6 +29,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "token-transformer": "^0.0.33",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
