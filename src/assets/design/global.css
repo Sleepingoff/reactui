@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+body {
+    max-width: 1200px;
+}
+
 ul,
 ol {
     list-style-type: none;

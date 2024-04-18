@@ -1,4 +1,4 @@
-import "./Img.module.css";
+import './Img.module.css';
 
 interface Prop {
   src: string;

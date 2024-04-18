@@ -1,5 +1,5 @@
-import { MouseEventHandler, PropsWithChildren } from "react";
-import "./Wrapper.module.scss";
+import { MouseEventHandler, PropsWithChildren } from 'react';
+import './Wrapper.module.scss';
 
 interface Prop extends PropsWithChildren {
   className?: string;

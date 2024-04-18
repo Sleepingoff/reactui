@@ -1,7 +1,9 @@
-import { MouseEventHandler, PropsWithChildren } from "react";
-import Summary from "../Summary/Summary";
-import useAccordion from "../../../hooks/useAccordion";
-import Panel from "@/components/molecules/Panel/Panel";
+import { MouseEventHandler, PropsWithChildren } from 'react';
+
+import Summary from '../Summary/Summary';
+
+import Panel from '@/components/molecules/Panel/Panel';
+import useAccordion from '@/hooks/useAccordion';
 
 interface Prop<T> extends PropsWithChildren {
   className?: string;

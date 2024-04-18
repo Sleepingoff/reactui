@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Accordion from '@/components/organisms/Accordion/Accordion';
+
+const list = [
+  { id: '123', title: 'title1', contents: 'contentsalskdjflsadjf;lajdsf' },
+  { id: '1d23', title: 'title2', contents: 'contentsalskdjflsadjf;lajdsf' },
+  { id: '1223', title: 'title3', contents: 'contentsalskdjflsadjf;lajdsf' },
+  { id: '1243', title: 'title4', contents: '' }
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const handleClickSummary = () => {
+    console.log('click');
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Accordion>
+        {list.map(item => {
+          return (
+            <Accordion.Details>
+              <Accordion.Summary key={item.id} onClick={handleClickSummary}>
+                <Accordion.Title>{item.title}</Accordion.Title>
+                <Accordion.Icon src="" alt="" />
+              </Accordion.Summary>
+              <Accordion.Panel>{item.contents}</Accordion.Panel>
+            </Accordion.Details>
+          );
+        })}
+      </Accordion>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

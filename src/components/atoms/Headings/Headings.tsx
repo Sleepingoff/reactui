@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
 const H1 = ({ children }: PropsWithChildren) => {
   return <h1>{children}</h1>;
@@ -25,7 +25,7 @@ const Heading = {
   3: H3,
   4: H4,
   5: H5,
-  6: H6,
+  6: H6
 };
 
 export default Heading;
