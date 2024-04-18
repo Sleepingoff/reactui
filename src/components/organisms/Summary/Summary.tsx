@@ -1,4 +1,4 @@
-import { MouseEventHandler, PropsWithChildren } from "react";
+import React, { MouseEventHandler, PropsWithChildren } from "react";
 
 import Button from "@/components/atoms/Button/Button";
 import Title from "@/components/molecules/Title/Title";
@@ -6,10 +6,8 @@ import Img from "@/components/atoms/Img/Img";
 import styles from "./Summary.module.scss";
 
 interface IconType {
-  icon: {
-    src: string;
-    alt: string;
-  };
+  src: string;
+  alt: string;
 }
 
 interface Prop extends PropsWithChildren {
@@ -17,58 +15,42 @@ interface Prop extends PropsWithChildren {
   className?: string;
 }
 
-interface IconProp extends Prop, IconType {}
+const SummaryTitle = ({ children }: PropsWithChildren) => {
+  return <Title>{children}</Title>;
+};
 
-const SummaryWithNone = ({ onClick, children, className }: Prop) => {
+const SummaryIcon = ({ src, alt }: IconType) => {
+  const handleClickButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+  };
   return (
-    <Title className={className} onClick={onClick}>
+    <Button onClick={handleClickButton}>
+      <Img src={src} alt={alt} />
+    </Button>
+  );
+};
+
+const Summary = ({ children, onClick }: Prop) => {
+  let hasTitle = false;
+
+  React.Children.forEach(children, (child) => {
+    if (React.isValidElement(child) && child.type === SummaryTitle) {
+      hasTitle = true;
+    }
+  });
+
+  if (!hasTitle) {
+    console.warn("Summary component is missing a Title component.");
+  }
+
+  return (
+    <summary className={styles.title} onClick={onClick}>
       {children}
-    </Title>
+    </summary>
   );
 };
 
-const SummaryWithRightIcon = ({
-  onClick,
-  children,
-  icon,
-  className,
-}: IconProp) => {
-  const handleClickButton: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-  };
-  return (
-    <SummaryWithNone className={styles.title} onClick={onClick}>
-      <div className={className}>{children}</div>
-      <Button onClick={handleClickButton}>
-        <Img src={icon.src} alt={icon.alt} />
-      </Button>
-    </SummaryWithNone>
-  );
-};
-
-const SummaryWithLeftIcon = ({
-  onClick,
-  children,
-  icon,
-  className,
-}: IconProp) => {
-  const handleClickButton: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-  };
-  return (
-    <SummaryWithNone className={styles.title} onClick={onClick}>
-      <Button onClick={handleClickButton}>
-        <Img src={icon.src} alt={icon.alt} />
-      </Button>
-      <div className={className}>{children}</div>
-    </SummaryWithNone>
-  );
-};
-
-const Summary = {
-  None: SummaryWithNone,
-  RightIcon: SummaryWithRightIcon,
-  LeftIcon: SummaryWithLeftIcon,
-};
+Summary.Title = SummaryTitle;
+Summary.Icon = SummaryIcon;
 
 export default Summary;
