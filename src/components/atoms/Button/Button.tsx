@@ -1,14 +1,14 @@
 import { MouseEventHandler, PropsWithChildren } from 'react';
 import './Button.module.css';
+import Prop from '@/types/Prop';
 
-interface Prop extends PropsWithChildren {
+interface PropType extends Prop<HTMLButtonElement> {
   type?: 'button' | 'submit' | 'reset';
-  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = ({ type = 'button', children, onClick }: Prop) => {
+const Button = ({ type = 'button', children, onClick, ...props }: PropType) => {
   return (
-    <button type={type} onClick={onClick}>
+    <button type={type} onClick={onClick} {...props}>
       {children}
     </button>
   );

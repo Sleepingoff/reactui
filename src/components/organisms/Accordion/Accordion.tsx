@@ -1,17 +1,13 @@
-import { MouseEventHandler, PropsWithChildren } from 'react';
-
 import Summary from '../Summary/Summary';
 
 import Panel from '@/components/molecules/Panel/Panel';
 import useAccordion from '@/hooks/useAccordion';
+import Prop from '@/types/Prop';
 
-interface Prop<T> extends PropsWithChildren {
-  className?: string;
-  onClick?: MouseEventHandler<T>;
-}
+interface PropType<T> extends Prop<T> {}
 //todo: summary에 onclick이 붙는게 맞는지
 //todo: details open 속성을 조절할 수 있는 이벤트
-const AccordionSummary = ({ children, onClick }: Prop<HTMLElement>) => {
+const AccordionSummary = ({ children, onClick }: PropType<HTMLElement>) => {
   const { handleClickSummary } = useAccordion(onClick);
   return <Summary onClick={handleClickSummary}>{children}</Summary>;
 };
@@ -19,9 +15,13 @@ const AccordionSummary = ({ children, onClick }: Prop<HTMLElement>) => {
 AccordionSummary.Title = Summary.Title;
 AccordionSummary.Icon = Summary.Icon;
 
-const AccordionDetails = ({ children, onClick }: Prop<HTMLDetailsElement>) => {
+const AccordionDetails = ({
+  children,
+  onClick,
+  ...props
+}: PropType<HTMLElement>) => {
   return (
-    <li>
+    <li {...props}>
       <details onClick={onClick}>{children}</details>
     </li>
   );
@@ -30,8 +30,16 @@ const AccordionDetails = ({ children, onClick }: Prop<HTMLDetailsElement>) => {
 AccordionDetails.Summary = AccordionSummary;
 AccordionDetails.Panel = Panel;
 
-const Accordion = ({ className, children }: Prop<HTMLElement>) => {
-  return <ul className={className}>{children}</ul>;
+const Accordion = ({
+  className,
+  children,
+  ...props
+}: PropType<HTMLUListElement>) => {
+  return (
+    <ul className={className} {...props}>
+      {children}
+    </ul>
+  );
 };
 
 Accordion.Details = AccordionDetails;

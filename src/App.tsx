@@ -16,8 +16,8 @@ function App() {
       <Accordion>
         {list.map(item => {
           return (
-            <Accordion.Details>
-              <Accordion.Summary key={item.id} onClick={handleClickSummary}>
+            <Accordion.Details key={item.id}>
+              <Accordion.Summary onClick={handleClickSummary}>
                 <Accordion.Title>{item.title}</Accordion.Title>
                 <Accordion.Icon src="" alt="" />
               </Accordion.Summary>

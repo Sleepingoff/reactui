@@ -1,3 +1,5 @@
-div {
-    box-sizing: border-box;
+@import url('/src/assets/design/variables.scss');
+.wrapper {
+  box-sizing: border-box;
+  border-radius: $round-default;
 }

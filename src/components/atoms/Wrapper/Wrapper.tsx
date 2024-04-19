@@ -1,14 +1,15 @@
-import { MouseEventHandler, PropsWithChildren } from 'react';
-import './Wrapper.module.scss';
+import Prop from '@/types/Prop';
+import styles from './Wrapper.module.scss';
 
-interface Prop extends PropsWithChildren {
-  className?: string;
-  onClick?: MouseEventHandler<HTMLDivElement>;
-}
+interface PropType extends Prop<HTMLDivElement> {}
 
-const Wrapper = ({ onClick, className, children }: Prop) => {
+const Wrapper = ({ onClick, className, children, ...props }: PropType) => {
   return (
-    <div onClick={onClick} className={className}>
+    <div
+      onClick={onClick}
+      className={`${styles.wrapper} ${className}`}
+      {...props}
+    >
       {children}
     </div>
   );

@@ -12,7 +12,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --fix",
     "preview": "vite preview",
-    "token-transfer": "node design.js"
+    "token-transfer": "node design.js",
+    "storybook": ""
   },
   "dependencies": {
     "react": "^18.2.0",

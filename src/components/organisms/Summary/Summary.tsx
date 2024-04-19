@@ -1,37 +1,36 @@
-import React, { MouseEventHandler, PropsWithChildren } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import styles from './Summary.module.scss';
 
 import Button from '@/components/atoms/Button/Button';
 import Img from '@/components/atoms/Img/Img';
 import Title from '@/components/molecules/Title/Title';
+import Prop from '@/types/Prop';
 
 interface IconType {
   src: string;
   alt: string;
+  title?: string;
 }
 
-interface Prop extends PropsWithChildren {
-  onClick: MouseEventHandler<HTMLDivElement>;
-  className?: string;
-}
+interface PropType extends Prop<HTMLDivElement> {}
 
-const SummaryTitle = ({ children }: PropsWithChildren) => {
-  return <Title>{children}</Title>;
+const SummaryTitle = ({ children, ...props }: PropType) => {
+  return <Title {...props}>{children}</Title>;
 };
 
-const SummaryIcon = ({ src, alt }: IconType) => {
+const SummaryIcon = ({ src, alt, title = alt }: IconType) => {
   const handleClickButton: MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
   };
   return (
-    <Button onClick={handleClickButton}>
+    <Button title={title} onClick={handleClickButton}>
       <Img src={src} alt={alt} />
     </Button>
   );
 };
 
-const Summary = ({ children, onClick }: Prop) => {
+const Summary = ({ children, onClick, ...props }: PropType) => {
   let hasTitle = false;
 
   React.Children.forEach(children, child => {
@@ -45,7 +44,7 @@ const Summary = ({ children, onClick }: Prop) => {
   }
 
   return (
-    <summary className={styles.title} onClick={onClick}>
+    <summary role="title" className={styles.title} onClick={onClick} {...props}>
       {children}
     </summary>
   );

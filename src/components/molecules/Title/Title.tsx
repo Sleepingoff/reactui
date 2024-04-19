@@ -1,12 +1,10 @@
-import { PropsWithChildren } from 'react';
-
 import Wrapper from '@/components/atoms/Wrapper/Wrapper';
+import Prop from '@/types/Prop';
 
-interface Prop extends PropsWithChildren {
-  className?: string;
-}
-const Title = ({ children, className }: Prop) => {
-  return <Wrapper className={className}>{children}</Wrapper>;
+interface PropType extends Prop<HTMLDivElement> {}
+
+const Title = ({ children, ...props }: PropType) => {
+  return <Wrapper {...props}>{children}</Wrapper>;
 };
 
 export default Title;
