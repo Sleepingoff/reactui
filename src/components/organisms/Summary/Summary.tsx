@@ -1,11 +1,11 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 
 import styles from './Summary.module.scss';
 
-import Button from '@/components/atoms/Button/Button';
 import Img from '@/components/atoms/Img/Img';
 import Title from '@/components/molecules/Title/Title';
 import Prop from '@/types/Prop';
+import Wrapper from '@/components/atoms/Wrapper/Wrapper';
 
 interface IconType {
   src: string;
@@ -19,14 +19,11 @@ const SummaryTitle = ({ children, ...props }: PropType) => {
   return <Title {...props}>{children}</Title>;
 };
 
-const SummaryIcon = ({ src, alt, title = alt }: IconType) => {
-  const handleClickButton: MouseEventHandler<HTMLButtonElement> = e => {
-    e.preventDefault();
-  };
+const SummaryIcon = ({ src, alt }: IconType) => {
   return (
-    <Button title={title} onClick={handleClickButton}>
+    <Wrapper aria-hidden="true" tabIndex={-1} title="summary-icon">
       <Img src={src} alt={alt} />
-    </Button>
+    </Wrapper>
   );
 };
 
@@ -44,7 +41,7 @@ const Summary = ({ children, onClick, ...props }: PropType) => {
   }
 
   return (
-    <summary role="title" className={styles.title} onClick={onClick} {...props}>
+    <summary className={styles.summary} onClick={onClick} {...props}>
       {children}
     </summary>
   );

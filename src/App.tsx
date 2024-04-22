@@ -18,7 +18,10 @@ function App() {
           return (
             <Accordion.Details key={item.id}>
               <Accordion.Summary onClick={handleClickSummary}>
-                <Accordion.Title>{item.title}</Accordion.Title>
+                <Accordion.Title>
+                  {item.title}
+                  <p>description</p>
+                </Accordion.Title>
                 <Accordion.Icon src="" alt="" />
               </Accordion.Summary>
               <Accordion.Panel>{item.contents}</Accordion.Panel>

@@ -4,6 +4,8 @@ import Panel from '@/components/molecules/Panel/Panel';
 import useAccordion from '@/hooks/useAccordion';
 import Prop from '@/types/Prop';
 
+import styles from './Accordion.module.scss';
+
 interface PropType<T> extends Prop<T> {}
 //todo: summary에 onclick이 붙는게 맞는지
 //todo: details open 속성을 조절할 수 있는 이벤트
@@ -21,7 +23,7 @@ const AccordionDetails = ({
   ...props
 }: PropType<HTMLElement>) => {
   return (
-    <li {...props}>
+    <li className={styles.details} {...props}>
       <details onClick={onClick}>{children}</details>
     </li>
   );
@@ -36,7 +38,7 @@ const Accordion = ({
   ...props
 }: PropType<HTMLUListElement>) => {
   return (
-    <ul className={className} {...props}>
+    <ul className={`${styles.accordion} ${className}`} {...props}>
       {children}
     </ul>
   );
