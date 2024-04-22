@@ -1,0 +1,12 @@
+@use '/src/assets/design/variables.scss' as *;
+
+.accordion {
+  width: 500px;
+}
+
+.details {
+  margin: $round-default;
+  background-color: $color-wb-300;
+  // todo: 좀 더 연한 녹색 적용하기
+  border-radius: $round-default;
+}

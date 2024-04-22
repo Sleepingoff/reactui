@@ -1,4 +1,4 @@
-@import url('/src/assets/design/variables.scss');
+@use '/src/assets/design/variables.scss' as *;
 .wrapper {
   box-sizing: border-box;
   border-radius: $round-default;

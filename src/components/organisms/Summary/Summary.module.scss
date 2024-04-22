@@ -1,5 +1,12 @@
-.title {
+@use '/src/assets/design/variables.scss' as *;
+
+.summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: $round-small $round-big;
+  border-radius: $round-default;
+  background-color: $color-wb-400;
+  color: $color-wb-100;
+  width: 100%;
 }
