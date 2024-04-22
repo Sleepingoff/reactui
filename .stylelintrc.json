@@ -1,0 +1,18 @@
+{
+    "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-prettier/recommended"
+    ],
+    "plugins": [
+        "stylelint-scss"
+    ],
+    "rules": {
+        "scss/dollar-variable-pattern": "^\\$[a-z-]+$",
+        "scss/percent-placeholder-pattern": "^%[a-z-]+$",
+        "scss/at-function-pattern": "^@\\w+",
+        "no-empty-source": null,
+        "no-missing-end-of-source-newline": null,
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": true
+    }
+}

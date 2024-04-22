@@ -1,0 +1,6 @@
+@use '/src/assets/design/variables.scss' as *;
+.button {
+  padding: $round-small $round-default;
+  border: 1px solid black;
+  background-color: transparent;
+}

@@ -1,0 +1,5 @@
+@use '/src/assets/design/variables.scss' as *;
+.wrapper {
+  box-sizing: border-box;
+  border-radius: $round-default;
+}
