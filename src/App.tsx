@@ -1,37 +1,5 @@
-import Accordion from '@/components/organisms/Accordion/Accordion';
-import { AccordionContext } from './hooks/useAccordion';
-
-const list = [
-  { id: '123', title: 'title1', contents: 'contentsalskdjflsadjf;lajdsf' },
-  { id: '1d23', title: 'title2', contents: 'contentsalskdjflsadjf;lajdsf' },
-  { id: '1223', title: 'title3', contents: 'contentsalskdjflsadjf;lajdsf' },
-  { id: '1243', title: 'title4', contents: '' }
-];
-
 function App() {
-  const handleClickSummary = () => {
-    console.log('click');
-  };
-  return (
-    <>
-      <Accordion>
-        {list.map((item, idx) => {
-          return (
-            <Accordion.Details key={item.id} disabled={!item.contents}>
-              <Accordion.Summary onClick={handleClickSummary}>
-                <Accordion.Title>
-                  {item.title}
-                  <p>description</p>
-                </Accordion.Title>
-                <Accordion.Icon src="" alt="" />
-              </Accordion.Summary>
-              <Accordion.Panel>{item.contents}</Accordion.Panel>
-            </Accordion.Details>
-          );
-        })}
-      </Accordion>
-    </>
-  );
+  return <></>;
 }
 
 export default App;
