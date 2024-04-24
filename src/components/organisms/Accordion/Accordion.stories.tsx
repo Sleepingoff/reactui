@@ -5,9 +5,18 @@ import Accordion from './Accordion';
 const meta: Meta<typeof Accordion> = {
   title: 'Components/organisms/Accordion',
   component: Accordion,
-  // 컴포넌트에 대한 문서를 자동으로 생성
   tags: ['autodocs'],
-  argTypes: {}
+  argTypes: {
+    title: {
+      control: 'text'
+    },
+    content: {
+      control: 'text'
+    },
+    icon: {
+      control: { type: 'file', accept: '.png' }
+    }
+  }
 };
 
 export default meta;
@@ -20,18 +29,15 @@ const list = [
 ];
 
 export const Primary: Story = {
-  render: () => (
+  render: args => (
     <>
       <Accordion>
         {list.map(item => {
           return (
             <Accordion.Details key={item.id}>
               <Accordion.Summary>
-                <Accordion.Title>
-                  {item.title}
-                  <p>description</p>
-                </Accordion.Title>
-                <Accordion.Icon src="" alt="" />
+                <Accordion.Title>{item.title}</Accordion.Title>
+                <Accordion.Icon src={args.icon} alt="" />
               </Accordion.Summary>
               <Accordion.Panel>{item.contents}</Accordion.Panel>
             </Accordion.Details>
