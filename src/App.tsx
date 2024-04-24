@@ -1,4 +1,5 @@
 import Accordion from '@/components/organisms/Accordion/Accordion';
+import { AccordionContext } from './hooks/useAccordion';
 
 const list = [
   { id: '123', title: 'title1', contents: 'contentsalskdjflsadjf;lajdsf' },
@@ -14,9 +15,9 @@ function App() {
   return (
     <>
       <Accordion>
-        {list.map(item => {
+        {list.map((item, idx) => {
           return (
-            <Accordion.Details key={item.id}>
+            <Accordion.Details key={item.id} disabled={!item.contents}>
               <Accordion.Summary onClick={handleClickSummary}>
                 <Accordion.Title>
                   {item.title}

@@ -1,30 +1,55 @@
 import Summary from '../Summary/Summary';
 
 import Panel from '@/components/molecules/Panel/Panel';
-import useAccordion from '@/hooks/useAccordion';
+import useAccordion, { AccordionContext } from '@/hooks/useAccordion';
 import Prop from '@/types/Prop';
 
 import styles from './Accordion.module.scss';
+import Details from '../Details/Details';
+import React, { ReactElement, SyntheticEvent, useMemo, useState } from 'react';
 
-interface PropType<T> extends Prop<T> {}
-//todo: summary에 onclick이 붙는게 맞는지
-//todo: details open 속성을 조절할 수 있는 이벤트
-const AccordionSummary = ({ children, onClick }: PropType<HTMLElement>) => {
-  const { handleClickSummary } = useAccordion(onClick);
-  return <Summary onClick={handleClickSummary}>{children}</Summary>;
+interface PropType<T> extends Prop<T> {
+  disabled?: boolean;
+}
+
+const AccordionSummary = ({ children }: PropType<HTMLElement>) => {
+  return <Summary>{children}</Summary>;
 };
 
 AccordionSummary.Title = Summary.Title;
 AccordionSummary.Icon = Summary.Icon;
 
 const AccordionDetails = ({
+  disabled,
   children,
-  onClick,
   ...props
 }: PropType<HTMLElement>) => {
+  const { providerValue } = useAccordion();
+  const [isOpen, setIsOpen] = useState(providerValue.open);
+  const [isDisabled, setIsDisabled] = useState(
+    disabled ?? providerValue.disabled
+  );
+  const actions = useMemo(
+    () => ({
+      handleClickDetails(event: React.MouseEvent<Element, MouseEvent>) {
+        //disabled일 경우 이벤트가 일어나지 않도록 막는다.
+        //즉, disabled라면 details의 toggle 이벤트가 일어나는 것까지 막을 수 있다.
+        if (isDisabled) event.preventDefault();
+        //isOpen의 경우 open을 주고 말고에는 관여하지 않는다.
+        //aria-속성을 위해 남겨둠
+        setIsOpen(!isOpen);
+      }
+    }),
+    []
+  );
+  const value = useMemo(() => {
+    return { open: isOpen, disabled: isDisabled, actions };
+  }, []);
   return (
     <li className={styles.details} {...props}>
-      <details onClick={onClick}>{children}</details>
+      <AccordionContext.Provider value={value}>
+        <Details>{children}</Details>
+      </AccordionContext.Provider>
     </li>
   );
 };
