@@ -1,9 +1,4 @@
-import {
-  MouseEventHandler,
-  ReactEventHandler,
-  createContext,
-  useContext
-} from 'react';
+import { MouseEventHandler, createContext, useContext } from 'react';
 type ContextType = {
   open: boolean;
   disabled: boolean;
