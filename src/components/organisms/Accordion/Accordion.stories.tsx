@@ -5,32 +5,50 @@ import Accordion from './Accordion';
 const meta: Meta<typeof Accordion> = {
   title: 'Components/organisms/Accordion',
   component: Accordion,
-  // 컴포넌트에 대한 문서를 자동으로 생성
   tags: ['autodocs'],
-  argTypes: {}
+  argTypes: {
+    title: {
+      control: 'text'
+    },
+    content: {
+      control: 'text'
+    }
+  }
 };
 
 export default meta;
 type Story = StoryObj<typeof Accordion>;
 const list = [
-  { id: '123', title: 'title1', contents: 'contentsalskdjflsadjf;lajdsf' },
-  { id: '1d23', title: 'title2', contents: 'contentsalskdjflsadjf;lajdsf' },
-  { id: '1223', title: 'title3', contents: 'contentsalskdjflsadjf;lajdsf' },
+  {
+    id: '123',
+    title: 'title1',
+    contents:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione atque, officiis consectetur optio a porro numquam maiores accusantium illo. Debitis voluptatem quaerat eos temporibus culpa quia nisi quisquam quidem voluptatum.'
+  },
+  {
+    id: '1d23',
+    title: 'title2',
+    contents:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione atque, officiis consectetur optio a porro numquam maiores accusantium illo. Debitis voluptatem quaerat eos temporibus culpa quia nisi quisquam quidem voluptatum.'
+  },
+  {
+    id: '1223',
+    title: 'title3',
+    contents:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione atque, officiis consectetur optio a porro numquam maiores accusantium illo. Debitis voluptatem quaerat eos temporibus culpa quia nisi quisquam quidem voluptatum.'
+  },
   { id: '1243', title: 'title4', contents: '' }
 ];
 
-export const Primary: Story = {
-  render: () => (
+export const Multiple: Story = {
+  render: args => (
     <>
       <Accordion>
         {list.map(item => {
           return (
-            <Accordion.Details key={item.id}>
+            <Accordion.Details key={item.id} disabled={!item.contents}>
               <Accordion.Summary>
-                <Accordion.Title>
-                  {item.title}
-                  <p>description</p>
-                </Accordion.Title>
+                <Accordion.Title>{item.title}</Accordion.Title>
                 <Accordion.Icon src="" alt="" />
               </Accordion.Summary>
               <Accordion.Panel>{item.contents}</Accordion.Panel>
@@ -39,5 +57,19 @@ export const Primary: Story = {
         })}
       </Accordion>
     </>
+  )
+};
+
+export const Single: Story = {
+  render: args => (
+    <Accordion>
+      <Accordion.Details>
+        <Accordion.Summary>
+          <Accordion.Title>{args.title}</Accordion.Title>
+          <Accordion.Icon src="" alt="" />
+        </Accordion.Summary>
+        <Accordion.Panel>{args.content}</Accordion.Panel>
+      </Accordion.Details>
+    </Accordion>
   )
 };

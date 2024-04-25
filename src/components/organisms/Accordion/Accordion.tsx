@@ -1,42 +1,59 @@
 import Summary from '../Summary/Summary';
 
 import Panel from '@/components/molecules/Panel/Panel';
-import useAccordion from '@/hooks/useAccordion';
+
+import useAccordion, { AccordionContext } from '@/hooks/useAccordion';
 import Prop from '@/types/Prop';
 
 import styles from './Accordion.module.scss';
+import Details from '../Details/Details';
+import React, { useMemo, useState } from 'react';
 
-interface PropType<T> extends Prop<T> {}
-//todo: summary에 onclick이 붙는게 맞는지
-//todo: details open 속성을 조절할 수 있는 이벤트
-const AccordionSummary = ({ children, onClick }: PropType<HTMLElement>) => {
-  const { handleClickSummary } = useAccordion(onClick);
-  return <Summary onClick={handleClickSummary}>{children}</Summary>;
-};
-
-AccordionSummary.Title = Summary.Title;
-AccordionSummary.Icon = Summary.Icon;
+interface PropType<T> extends Prop<T> {
+  disabled?: boolean;
+}
 
 const AccordionDetails = ({
+  disabled,
   children,
-  onClick,
   ...props
 }: PropType<HTMLElement>) => {
+  const { providerValue } = useAccordion();
+  const [isOpen, setIsOpen] = useState(providerValue.open);
+  const [isDisabled, _] = useState(disabled ?? providerValue.disabled);
+  const actions = useMemo(
+    () => ({
+      handleClickDetails(event: React.MouseEvent<Element, MouseEvent>) {
+        //disabled일 경우 이벤트가 일어나지 않도록 막는다.
+        //즉, disabled라면 details의 toggle 이벤트가 일어나는 것까지 막을 수 있다.
+        if (isDisabled) event.preventDefault();
+        else setIsOpen(!isOpen);
+      }
+    }),
+    []
+  );
+  const value = useMemo(() => {
+    return { open: isOpen, disabled: isDisabled, actions };
+  }, []);
   return (
     <li className={styles.details} {...props}>
-      <details onClick={onClick}>{children}</details>
+      <AccordionContext.Provider value={value}>
+        <Details>{children}</Details>
+      </AccordionContext.Provider>
     </li>
   );
 };
 
-AccordionDetails.Summary = AccordionSummary;
+
+AccordionDetails.Summary = Summary;
 AccordionDetails.Panel = Panel;
 
 const Accordion = ({
   className,
   children,
   ...props
-}: PropType<HTMLUListElement>) => {
+
+}: Prop<HTMLUListElement>) => {
   return (
     <ul className={`${styles.accordion} ${className}`} {...props}>
       {children}
