@@ -1,30 +1,59 @@
 import Panel from '@/components/molecules/Panel/Panel';
 import Title from '@/components/molecules/Title/Title';
 import useTab, { TabContext } from '@/hooks/useTab';
+import { DataType } from '@/types/Context/TabContext';
 import Prop from '@/types/Prop';
-import React, { useEffect, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 interface PropType<T> extends Prop<T> {
-  key?: string;
+  menu: DataType[];
 }
-
-const TabTitle = ({ key, children, ...props }: PropType<HTMLLIElement>) => {
-  const {} = useTab();
+const TabTitle = ({ children, ...props }: Prop<HTMLLIElement>) => {
+  const { list, actions } = useTab();
+  const handleClickTab = actions.handler;
 
   return (
-    <li key={key} {...props}>
-      <Title htmlFor="">{children}</Title>
-    </li>
+    <>
+      {list.map((item: DataType) => {
+        return (
+          <li {...props} key={item.id} onClick={handleClickTab(item.id)}>
+            <Title htmlFor={item.id}>{item.content}</Title>
+          </li>
+        );
+      })}
+    </>
   );
 };
 
-const TabMenus = ({ children, ...props }: PropType<HTMLUListElement>) => {
-  return <ul>{children}</ul>;
+const TabPanel = ({ children, ...props }: Prop<HTMLOutputElement>) => {
+  const { current } = useTab();
+
+  return current === props.id && <Panel {...props}>{children}</Panel>;
 };
 
-const Tab = ({ children, ...props }: Prop<HTMLElement>) => {
-  const {} = useTab();
-  const value = useMemo(() => ({}), []);
+const TabMenus = ({ children, ...props }: Prop<HTMLUListElement>) => {
+  return <ul {...props}>{children}</ul>;
+};
+
+const Tab = ({ menu, children, ...props }: PropType<HTMLElement>) => {
+  const defaultList = menu ?? [];
+
+  const { current } = useTab();
+  const [currentId, setCurrentId] = useState<string>(current);
+
+  const handleClickTab = (id: string) => () => {
+    setCurrentId(id);
+  };
+
+  const contextValue = {
+    list: defaultList,
+    current: currentId,
+    actions: {
+      handler: useMemo(() => handleClickTab, [currentId])
+    }
+  };
+
+  const value = useMemo(() => contextValue, [contextValue]);
   return (
     <section {...props}>
       <TabContext.Provider value={value}>{children}</TabContext.Provider>
@@ -34,6 +63,6 @@ const Tab = ({ children, ...props }: Prop<HTMLElement>) => {
 
 Tab.Menu = TabMenus;
 Tab.Title = TabTitle;
-Tab.Panel = Panel;
+Tab.Panel = TabPanel;
 
 export default Tab;
