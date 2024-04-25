@@ -48,10 +48,12 @@ export const Multiple: Story = {
           return (
             <Accordion.Details key={item.id} disabled={!item.contents}>
               <Accordion.Summary>
-                <Accordion.Title>{item.title}</Accordion.Title>
+                <Accordion.Title htmlFor={item.id}>
+                  {item.title}
+                </Accordion.Title>
                 <Accordion.Icon src="" alt="" />
               </Accordion.Summary>
-              <Accordion.Panel>{item.contents}</Accordion.Panel>
+              <Accordion.Panel id={item.id}>{item.contents}</Accordion.Panel>
             </Accordion.Details>
           );
         })}

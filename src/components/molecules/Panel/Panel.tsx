@@ -1,13 +1,12 @@
-import Wrapper from '@/components/atoms/Wrapper/Wrapper';
 import Prop from '@/types/Prop';
 import styles from './Panel.module.scss';
-interface PropType extends Prop<HTMLDivElement> {}
+interface PropType extends Prop<HTMLOutputElement> {}
 
-const Panel = ({ children, ...props }: PropType) => {
+const Panel = ({ id, children, ...props }: PropType) => {
   return (
-    <Wrapper role="tabpanel" className={styles.panel} {...props}>
+    <output id={id} role="tabpanel" className={styles.panel} {...props}>
       {children}
-    </Wrapper>
+    </output>
   );
 };
 
