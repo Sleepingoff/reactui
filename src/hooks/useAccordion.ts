@@ -35,4 +35,5 @@ const useAccordion = () => {
 };
 
 export { AccordionContext };
+
 export default useAccordion;

@@ -6,7 +6,9 @@ import Img from '@/components/atoms/Img/Img';
 import Title from '@/components/molecules/Title/Title';
 import Prop from '@/types/Prop';
 import Wrapper from '@/components/atoms/Wrapper/Wrapper';
+
 import useAccordion from '@/hooks/useAccordion';
+
 
 interface IconType {
   src: string;
@@ -15,13 +17,16 @@ interface IconType {
 
 interface PropType extends Prop<HTMLDivElement> {}
 
+
 const SummaryIcon = ({ src, alt }: IconType) => {
   return (
     <Wrapper aria-hidden="true" title="summary-icon">
+
       <Img src={src} alt={alt} />
     </Wrapper>
   );
 };
+
 
 const Summary = ({ children, ...props }: PropType) => {
   const { providerValue } = useAccordion();
@@ -48,6 +53,7 @@ const Summary = ({ children, ...props }: PropType) => {
     </summary>
   );
 };
+
 
 Summary.Title = Title;
 Summary.Icon = SummaryIcon;

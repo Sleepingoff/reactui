@@ -1,6 +1,7 @@
 import Summary from '../Summary/Summary';
 
 import Panel from '@/components/molecules/Panel/Panel';
+
 import useAccordion, { AccordionContext } from '@/hooks/useAccordion';
 import Prop from '@/types/Prop';
 
@@ -43,6 +44,7 @@ const AccordionDetails = ({
   );
 };
 
+
 AccordionDetails.Summary = Summary;
 AccordionDetails.Panel = Panel;
 
@@ -50,6 +52,7 @@ const Accordion = ({
   className,
   children,
   ...props
+
 }: Prop<HTMLUListElement>) => {
   return (
     <ul className={`${styles.accordion} ${className}`} {...props}>
