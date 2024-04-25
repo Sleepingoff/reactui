@@ -10,3 +10,7 @@ const meta: Meta = {
 };
 
 export default meta;
+
+export const Example: typeof Title = () => {
+  return <Title htmlFor="">Title </Title>;
+};
