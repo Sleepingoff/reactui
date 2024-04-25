@@ -4,6 +4,35 @@
   padding: $round-small;
 }
 
-.tab-menu {
+.tabMenu {
   display: flex;
+
+  & > li {
+    padding: $round-small $round-default;
+    border-radius: $round-default $round-default 0 0;
+    background-color: $color-wb-300;
+  }
+  & > li:focus {
+    outline: 1px solid $color-semantic-green;
+  }
+
+  & > li:hover {
+    cursor: grab;
+  }
+
+  & > li.active {
+    border: 1px solid $color-wb-500;
+    border-bottom: none;
+  }
+
+  & > li.title {
+    background-color: $color-wb-200;
+  }
+}
+
+.tabPanel {
+  display: block;
+  padding: $round-default;
+  border-radius: $round-default;
+  background-color: $color-wb-300;
 }
