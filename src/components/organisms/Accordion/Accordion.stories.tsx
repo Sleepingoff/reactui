@@ -67,10 +67,10 @@ export const Single: Story = {
     <Accordion>
       <Accordion.Details>
         <Accordion.Summary>
-          <Accordion.Title>{args.title}</Accordion.Title>
+          <Accordion.Title htmlFor="example">{args.title}</Accordion.Title>
           <Accordion.Icon src="" alt="" />
         </Accordion.Summary>
-        <Accordion.Panel>{args.content}</Accordion.Panel>
+        <Accordion.Panel id="example">{args.content}</Accordion.Panel>
       </Accordion.Details>
     </Accordion>
   )
