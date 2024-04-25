@@ -1,9 +1,10 @@
+import { useMemo, useState } from 'react';
+
 import Panel from '@/components/molecules/Panel/Panel';
 import Title from '@/components/molecules/Title/Title';
 import useTab, { TabContext } from '@/hooks/useTab';
 import { DataType } from '@/types/Context/TabContext';
 import Prop from '@/types/Prop';
-import { useMemo, useState } from 'react';
 
 interface PropType<T> extends Prop<T> {
   menu: DataType[];
@@ -18,6 +19,7 @@ const TabTitle = ({ children, ...props }: Prop<HTMLLIElement>) => {
         return (
           <li {...props} key={item.id} onClick={handleClickTab(item.id)}>
             <Title htmlFor={item.id}>{item.content}</Title>
+            {children}
           </li>
         );
       })}

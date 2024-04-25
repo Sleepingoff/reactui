@@ -1,5 +1,6 @@
-import Prop from '@/types/Prop';
 import styles from './Wrapper.module.scss';
+
+import Prop from '@/types/Prop';
 
 interface PropType extends Prop<HTMLDivElement> {}
 

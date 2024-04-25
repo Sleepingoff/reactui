@@ -1,0 +1,9 @@
+@use '/src/assets/design/variables.scss' as *;
+
+.tab {
+  padding: $round-small;
+}
+
+.tab-menu {
+  display: flex;
+}

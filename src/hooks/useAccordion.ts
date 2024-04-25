@@ -1,5 +1,6 @@
-import { AccordionContextType } from '@/types/Context/AccordionContext';
 import { createContext, useContext } from 'react';
+
+import { AccordionContextType } from '@/types/Context/AccordionContext';
 
 const contextValue: AccordionContextType = {
   open: false,

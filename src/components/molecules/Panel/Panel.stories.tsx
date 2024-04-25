@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/react';
+
 import Panel from './Panel';
 
 const meta: Meta = {

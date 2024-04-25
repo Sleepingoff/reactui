@@ -1,5 +1,6 @@
-import Prop from '@/types/Prop';
 import styles from './Panel.module.scss';
+
+import Prop from '@/types/Prop';
 interface PropType extends Prop<HTMLOutputElement> {}
 
 const Panel = ({ id, children, ...props }: PropType) => {

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import Accordion from './Accordion';
+
+import type { Meta } from '@storybook/react';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Components/organisms/Accordion',
@@ -17,7 +17,7 @@ const meta: Meta<typeof Accordion> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Accordion>;
+
 const list = [
   {
     id: '123',
@@ -40,8 +40,8 @@ const list = [
   { id: '1243', title: 'title4', contents: '' }
 ];
 
-export const Multiple: Story = {
-  render: args => (
+export const Multiple = () => {
+  return (
     <>
       <Accordion>
         {list.map(item => {
@@ -59,11 +59,11 @@ export const Multiple: Story = {
         })}
       </Accordion>
     </>
-  )
+  );
 };
 
-export const Single: Story = {
-  render: args => (
+export const Single = (args: { title: string; content: string }) => {
+  return (
     <Accordion>
       <Accordion.Details>
         <Accordion.Summary>
@@ -73,5 +73,5 @@ export const Single: Story = {
         <Accordion.Panel id="example">{args.content}</Accordion.Panel>
       </Accordion.Details>
     </Accordion>
-  )
+  );
 };
