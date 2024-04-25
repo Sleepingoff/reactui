@@ -2,8 +2,13 @@
 name: 'Chromatic Deployment'
 
 # Event for the workflow
-on: push
-
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.stories.tsx'
+      - '**/*.scss'
 # List of jobs
 jobs:
   test:
