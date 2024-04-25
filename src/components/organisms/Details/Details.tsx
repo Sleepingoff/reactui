@@ -1,7 +1,8 @@
-import Prop from '@/types/Prop';
 import Summary from '../Summary/Summary';
+
 import Panel from '@/components/molecules/Panel/Panel';
 import useAccordion from '@/hooks/useAccordion';
+import Prop from '@/types/Prop';
 
 interface PropType extends Prop<HTMLDetailsElement> {}
 const Details = ({ children, ...props }: PropType) => {

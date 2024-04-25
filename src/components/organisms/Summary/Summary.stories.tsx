@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/react';
+
 import Summary from './Summary';
 
 const meta: Meta = {

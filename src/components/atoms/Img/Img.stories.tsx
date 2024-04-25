@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/react';
+
 import Img from './Img';
 
 const meta: Meta = {

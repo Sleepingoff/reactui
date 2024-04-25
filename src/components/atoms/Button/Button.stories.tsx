@@ -1,7 +1,8 @@
 // Button.stories.tsx
 
-import type { Meta, StoryObj } from '@storybook/react';
 import Button from './Button';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 // 메타 데이터, 제네릭에 Button 컴포넌트의 타입을 넘겨준다.
 const meta: Meta<typeof Button> = {

@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/react';
+
 import Details from './Details';
 
 const meta: Meta = {

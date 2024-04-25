@@ -1,10 +1,15 @@
-import Wrapper from '@/components/atoms/Wrapper/Wrapper';
 import Prop from '@/types/Prop';
 
-interface PropType extends Prop<HTMLDivElement> {}
+interface PropType extends Prop<HTMLLabelElement> {
+  htmlFor: string;
+}
 
-const Title = ({ children, ...props }: PropType) => {
-  return <Wrapper {...props}>{children}</Wrapper>;
+const Title = ({ htmlFor, children, ...props }: PropType) => {
+  return (
+    <label htmlFor={htmlFor} {...props}>
+      {children}
+    </label>
+  );
 };
 
 export default Title;

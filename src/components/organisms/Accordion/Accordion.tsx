@@ -1,13 +1,12 @@
-import Summary from '../Summary/Summary';
-
-import Panel from '@/components/molecules/Panel/Panel';
-
-import useAccordion, { AccordionContext } from '@/hooks/useAccordion';
-import Prop from '@/types/Prop';
+import React, { useMemo, useState } from 'react';
 
 import styles from './Accordion.module.scss';
 import Details from '../Details/Details';
-import React, { useMemo, useState } from 'react';
+import Summary from '../Summary/Summary';
+
+import Panel from '@/components/molecules/Panel/Panel';
+import useAccordion, { AccordionContext } from '@/hooks/useAccordion';
+import Prop from '@/types/Prop';
 
 interface PropType<T> extends Prop<T> {
   disabled?: boolean;
@@ -20,7 +19,7 @@ const AccordionDetails = ({
 }: PropType<HTMLElement>) => {
   const { providerValue } = useAccordion();
   const [isOpen, setIsOpen] = useState(providerValue.open);
-  const [isDisabled, _] = useState(disabled ?? providerValue.disabled);
+  const [isDisabled] = useState(disabled ?? providerValue.disabled);
   const actions = useMemo(
     () => ({
       handleClickDetails(event: React.MouseEvent<Element, MouseEvent>) {
@@ -44,7 +43,6 @@ const AccordionDetails = ({
   );
 };
 
-
 AccordionDetails.Summary = Summary;
 AccordionDetails.Panel = Panel;
 
@@ -52,7 +50,6 @@ const Accordion = ({
   className,
   children,
   ...props
-
 }: Prop<HTMLUListElement>) => {
   return (
     <ul className={`${styles.accordion} ${className}`} {...props}>

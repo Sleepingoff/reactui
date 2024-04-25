@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import Accordion from './Accordion';
+
+import type { Meta } from '@storybook/react';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Components/organisms/Accordion',
@@ -17,7 +17,7 @@ const meta: Meta<typeof Accordion> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Accordion>;
+
 const list = [
   {
     id: '123',
@@ -40,36 +40,38 @@ const list = [
   { id: '1243', title: 'title4', contents: '' }
 ];
 
-export const Multiple: Story = {
-  render: args => (
+export const Multiple = () => {
+  return (
     <>
       <Accordion>
         {list.map(item => {
           return (
             <Accordion.Details key={item.id} disabled={!item.contents}>
               <Accordion.Summary>
-                <Accordion.Title>{item.title}</Accordion.Title>
+                <Accordion.Title htmlFor={item.id}>
+                  {item.title}
+                </Accordion.Title>
                 <Accordion.Icon src="" alt="" />
               </Accordion.Summary>
-              <Accordion.Panel>{item.contents}</Accordion.Panel>
+              <Accordion.Panel id={item.id}>{item.contents}</Accordion.Panel>
             </Accordion.Details>
           );
         })}
       </Accordion>
     </>
-  )
+  );
 };
 
-export const Single: Story = {
-  render: args => (
+export const Single = (args: { title: string; content: string }) => {
+  return (
     <Accordion>
       <Accordion.Details>
         <Accordion.Summary>
-          <Accordion.Title>{args.title}</Accordion.Title>
+          <Accordion.Title htmlFor="example">{args.title}</Accordion.Title>
           <Accordion.Icon src="" alt="" />
         </Accordion.Summary>
-        <Accordion.Panel>{args.content}</Accordion.Panel>
+        <Accordion.Panel id="example">{args.content}</Accordion.Panel>
       </Accordion.Details>
     </Accordion>
-  )
+  );
 };
