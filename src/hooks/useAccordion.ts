@@ -1,12 +1,7 @@
-import { MouseEventHandler, createContext, useContext } from 'react';
-type ContextType = {
-  open: boolean;
-  disabled: boolean;
-  actions: {
-    handleClickDetails: MouseEventHandler;
-  };
-};
-const contextValue: ContextType = {
+import { AccordionContextType } from '@/types/Context/AccordionContext';
+import { createContext, useContext } from 'react';
+
+const contextValue: AccordionContextType = {
   open: false,
   disabled: false,
   actions: {
@@ -14,7 +9,7 @@ const contextValue: ContextType = {
   }
 };
 const AccordionContext = createContext(contextValue);
-//summary를 클릭하면 해당 summary에 open 속성 부여
+
 const useAccordion = () => {
   const value = useContext(AccordionContext);
   if (value === undefined) {

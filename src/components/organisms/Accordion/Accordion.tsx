@@ -44,7 +44,6 @@ const AccordionDetails = ({
   );
 };
 
-
 AccordionDetails.Summary = Summary;
 AccordionDetails.Panel = Panel;
 
@@ -52,7 +51,6 @@ const Accordion = ({
   className,
   children,
   ...props
-
 }: Prop<HTMLUListElement>) => {
   return (
     <ul className={`${styles.accordion} ${className}`} {...props}>
