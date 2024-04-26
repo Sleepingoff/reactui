@@ -14,8 +14,7 @@
     "preview": "vite preview",
     "token-transfer": "node design.js",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_2c236be3d7a7c30"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@storybook/addon-controls": "^8.0.9",
