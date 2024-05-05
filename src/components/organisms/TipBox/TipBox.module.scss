@@ -1,0 +1,25 @@
+@import '/src/assets/design/variables.scss';
+
+.tipbox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: $round-default;
+  background-color: $color-wb-300;
+  padding: $round-default;
+
+  & > div {
+    background-color: $color-wb-100;
+    border-radius: $round-default;
+    margin-bottom: $round-default;
+  }
+
+  & > button {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  & > button:hover {
+    background-color: $color-wb-400;
+  }
+}
