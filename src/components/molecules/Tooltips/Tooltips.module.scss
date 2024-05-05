@@ -1,0 +1,55 @@
+@import '/src/assets/design/variables.scss';
+
+@mixin direction($property) {
+  inset: 0;
+  background-color: $color-wb-400;
+  color: $color-wb-100;
+  text-align: center;
+
+  @if $property == bottom {
+    #{$property}: 100%;
+  } @else if $property == right {
+    #{$property}: 100%;
+  } @else {
+    #{$property}: -100%;
+  }
+}
+
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.title {
+  position: relative;
+
+  & > .tooltips {
+    @extend .a11y-hidden;
+  }
+  // @if &: hover, &: focus {
+  //   & > .tooltips {
+  //   }
+  // }
+}
+
+.top {
+  @include direction(top);
+}
+
+.right {
+  @include direction(right);
+}
+
+.left {
+  @include direction(left);
+}
+
+.bottom {
+  @include direction(bottom);
+}
