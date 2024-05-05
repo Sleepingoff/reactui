@@ -2,26 +2,12 @@ import React, { useEffect } from 'react';
 
 import styles from './Summary.module.scss';
 
-import Img from '@/components/atoms/Img/Img';
-import Wrapper from '@/components/atoms/Wrapper/Wrapper';
 import Title from '@/components/molecules/Title/Title';
 import useAccordion from '@/hooks/useAccordion';
 import Prop from '@/types/Prop';
-
-interface IconType {
-  src: string;
-  alt: string;
-}
+import Icon from '@/components/molecules/Icon/Icon';
 
 interface PropType extends Prop<HTMLDivElement> {}
-
-const SummaryIcon = ({ src, alt }: IconType) => {
-  return (
-    <Wrapper aria-hidden="true" title="summary-icon">
-      <Img src={src} alt={alt} />
-    </Wrapper>
-  );
-};
 
 const Summary = ({ children, ...props }: PropType) => {
   const { providerValue } = useAccordion();
@@ -50,6 +36,6 @@ const Summary = ({ children, ...props }: PropType) => {
 };
 
 Summary.Title = Title;
-Summary.Icon = SummaryIcon;
+Summary.Icon = Icon;
 
 export default Summary;

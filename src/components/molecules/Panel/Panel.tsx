@@ -1,13 +1,14 @@
 import styles from './Panel.module.scss';
 
 import Prop from '@/types/Prop';
-interface PropType extends Prop<HTMLOutputElement> {}
+interface PropType extends Prop<HTMLDivElement> {}
 
+//todo: output -> section/article로 교체하기
 const Panel = ({ id, children, ...props }: PropType) => {
   return (
-    <output id={id} role="tabpanel" className={styles.panel} {...props}>
+    <div id={id} role="tabpanel" className={styles.panel} {...props}>
       {children}
-    </output>
+    </div>
   );
 };
 
