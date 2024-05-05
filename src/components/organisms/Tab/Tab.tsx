@@ -39,7 +39,7 @@ const TabTitle = ({ children, ...props }: Prop<HTMLLIElement>) => {
   );
 };
 
-const TabPanel = ({ children, ...props }: Prop<HTMLOutputElement>) => {
+const TabPanel = ({ children, ...props }: Prop<HTMLDivElement>) => {
   const { current } = useTab();
 
   return (
