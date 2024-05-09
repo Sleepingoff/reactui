@@ -10,8 +10,13 @@ interface TooltipsType extends Prop<HTMLDivElement> {
 
 const Tooltips = ({ position, title, children, ...props }: TooltipsType) => {
   return (
-    <Wrapper className={styles.title} aria-label={title} {...props}>
-      <label className={`${styles.tooltips} ${styles[position]}`}>
+    <Wrapper
+      role={props.role ?? 'tooltip'}
+      className={styles.title}
+      aria-label={title}
+      {...props}
+    >
+      <label aria-hidden className={`${styles.tooltips} ${styles[position]}`}>
         {title}
       </label>
       {children}
