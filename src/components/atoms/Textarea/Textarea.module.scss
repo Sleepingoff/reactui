@@ -1,0 +1,10 @@
+@import '/src/assets/design/variables.scss';
+
+.textarea {
+  background-color: $color-wb-100;
+  color: $color-wb-500;
+
+  &::placeholder {
+    color: $color-wb-400;
+  }
+}
