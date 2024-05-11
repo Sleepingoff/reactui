@@ -16,6 +16,7 @@ const ReactiveTextarea = ({
 }: PropType) => {
   //기본 textarea value 데이터 바인딩
   const [value, setValue] = useState('');
+
   const handleChangeTextarea: React.FormEventHandler<
     HTMLTextAreaElement
   > = event => {
@@ -54,6 +55,7 @@ const ReactiveTextarea = ({
       setPrevInputLength(inputTextLength);
       setCountOfTextAfterEnter(prev => prev + countOfText);
       //기존의 maxColsLength를 넘어선다면
+
       if (maxColsLength < countOfTextAfterEnter) {
         elem.cols = countOfTextAfterEnter;
       } else {
@@ -62,16 +64,29 @@ const ReactiveTextarea = ({
       }
       setMaxCols(elem.cols);
     }
+
     if (vertical) {
-      const currentRows = calcCurrentRows(value);
-      setMaxRowsLength(currentRows);
-      if (maxRows && maxRowsLength >= maxRows) {
-        setMaxRowsLength(maxRows);
+      //만약 줄바꿈이 일어난다면, 줄바꿈이 일어난 횟수만큼 더해주기
+      //줄바꿈이 일어난다면 = 텍스트의 한 줄 길이가 maxColsLength를 넘어갔을 때
+      //텍스트의 한 줄 길이를 아는 방법: calcMaxCols의 일부 로직
+      //!텍스트의 길이보단 해당 텍스트의 byte를 알아야한다!!
+      const ArrayOfBetweenEnterValues = value.split(/\r\n|\r|\n/);
+      const currentText =
+        ArrayOfBetweenEnterValues[ArrayOfBetweenEnterValues.length - 1];
+      const byteOfcurrentText = getByteOfValue(currentText);
+      //elem.cols에서 2를 더해야 실제 cols에서 쓸 수 있는 byte수가 나온다.
+      if (byteOfcurrentText >= maxColsLength + 2) {
+        const currentLines = Math.ceil(byteOfcurrentText / (maxColsLength + 2));
+        elem.rows += lines === currentLines ? 0 : 1;
+        setLines(currentLines);
+        console.log(currentText, byteOfcurrentText, maxColsLength, elem.cols);
       }
-      elem.rows = maxRowsLength;
+      if (maxRows && maxRowsLength >= maxRows) {
+        elem.rows = maxRows;
+      }
     }
   }, [value]);
-
+  const [lines, setLines] = useState(0);
   const calcMaxCols = useMemo(
     () => (value: string) => {
       const ArrayOfBetweenEnterValues = value.split(/\r\n|\r|\n/);
@@ -100,11 +115,15 @@ const ReactiveTextarea = ({
       const filteredTextLengthOverMaxCols = ArrayOfLength.filter(
         length => length > maxColsLength
       );
+      //이전에 계산했던 줄까지 다시 계산
       const textLengthOverMaxCols = filteredTextLengthOverMaxCols.reduce(
-        (prev, current) => (current += Math.ceil(prev / maxColsLength)),
-        0
+        (_, current) => {
+          const rowsOverMaxCols = Math.ceil(current / maxColsLength);
+          console.log(rowsOverMaxCols);
+          return rowsOverMaxCols;
+        },
+        ArrayOfBetweenEnterValues.length
       );
-      console.log(textLengthOverMaxCols);
       return textLengthOverMaxCols;
     },
     []
@@ -121,8 +140,11 @@ const ReactiveTextarea = ({
         if (horizontal && maxCols && maxCols >= calcedMaxCols) {
           setMaxCols(calcedMaxCols);
         }
-        if (vertical && maxRows && maxRows > maxRowsLength)
+        if (vertical && maxRows && maxRows > maxRowsLength) {
+          const currentRows = calcCurrentRows(value);
+          setMaxRowsLength(prev => prev + currentRows);
           textareaRef.current.rows++;
+        }
       }
     };
 
