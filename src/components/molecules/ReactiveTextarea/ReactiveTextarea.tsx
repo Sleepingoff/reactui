@@ -21,7 +21,7 @@ const ReactiveTextarea = ({
   rows,
   ...props
 }: PropType) => {
-  const { getGapOfBytes, splitByEnter } = useByte();
+  const { getByteOfValue, getGapOfBytes, splitByEnter } = useByte();
 
   const textarea = useRef(null);
   const [currentCols, setCurrentCols] = useState(cols ?? 1);
@@ -57,7 +57,7 @@ const ReactiveTextarea = ({
       if (isValidHorizontal) {
         setCountOfTextAfterEnter(0);
         //enter를 텍스트 중간에서 했을 경우 currentMacCols가 달라질 수 있다.
-        const currentMaxCols = calcMaxCols(value).cols;
+        const currentMaxCols = calcMaxColsByte(value);
         setCurrentCols(currentMaxCols);
       }
       if (isValidVertical) {
@@ -98,7 +98,6 @@ const ReactiveTextarea = ({
   useEffect(() => {
     if (!textarea.current) return;
     const elem = textarea.current as HTMLTextAreaElement;
-    console.log(elem);
     updateCountOfTextAfterEnter(value);
     const isOverCurrentCols = checkOverCurrentCols();
     const isPullCurrentCols = elem.cols === currentCols;
@@ -126,7 +125,7 @@ const ReactiveTextarea = ({
     setCurrentRows(elem.rows);
   }, [lines]);
 
-  const calcMaxCols = useMemo(
+  const calcMaxColsByte = useMemo(
     () => (value: string) => {
       const ArrayOfBetweenEnterValues = splitByEnter(value);
       const ArrayOfLength = ArrayOfBetweenEnterValues.map(
@@ -135,10 +134,7 @@ const ReactiveTextarea = ({
       const maxLengthOfValues = Math.max(...ArrayOfLength);
       const indexOfMaxLength = ArrayOfLength.indexOf(maxLengthOfValues);
 
-      return {
-        cols: maxLengthOfValues,
-        max: ArrayOfBetweenEnterValues[indexOfMaxLength]
-      };
+      return getByteOfValue(ArrayOfBetweenEnterValues[indexOfMaxLength]);
     },
     [value]
   );
