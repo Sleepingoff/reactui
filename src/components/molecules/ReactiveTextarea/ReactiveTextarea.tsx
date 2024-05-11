@@ -82,7 +82,7 @@ const ReactiveTextarea = ({
   };
 
   //elem.cols에서 2를 더해야 실제 cols에서 쓸 수 있는 byte수가 나온다.
-  const availableInputBytes = currentCols + 2; //20 -> 22
+  const availableInputBytes = currentCols + 2;
 
   const checkOverCurrentCols = () => {
     const isOverCurrentCols = countOfTextAfterEnter >= availableInputBytes;
@@ -98,7 +98,6 @@ const ReactiveTextarea = ({
   useEffect(() => {
     if (!textarea.current) return;
     const elem = textarea.current as HTMLTextAreaElement;
-
     updateCountOfTextAfterEnter(value);
     const isOverCurrentCols = checkOverCurrentCols();
     const isPullCurrentCols = elem.cols === currentCols;
