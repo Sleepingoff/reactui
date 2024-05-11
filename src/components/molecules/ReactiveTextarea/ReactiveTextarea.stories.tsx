@@ -11,7 +11,13 @@ export const HorizontalTextareaExample = () => {
     <>
       <Title htmlFor="textarea">textarea</Title>
       <br></br>
-      <ReactiveTextarea id="textarea" horizontal maxCols={20} rows={20} />
+      <ReactiveTextarea
+        id="textarea"
+        horizontal
+        maxCols={40}
+        rows={10}
+        placeholder="placeholder"
+      />
     </>
   );
 };
@@ -20,7 +26,13 @@ export const VerticalTextareaExample = () => {
     <>
       <Title htmlFor="textarea">textarea</Title>
       <br></br>
-      <ReactiveTextarea id="textarea" vertical cols={20} maxRows={20} />
+      <ReactiveTextarea
+        id="textarea"
+        vertical
+        cols={20}
+        maxRows={20}
+        placeholder="placeholder"
+      />
     </>
   );
 };
@@ -34,9 +46,10 @@ export const ReactiveTextareaExample = () => {
         vertical
         horizontal
         cols={20}
-        rows={20}
+        rows={10}
         maxCols={40}
-        maxRows={80}
+        maxRows={20}
+        placeholder="placeholder"
       />
     </>
   );
