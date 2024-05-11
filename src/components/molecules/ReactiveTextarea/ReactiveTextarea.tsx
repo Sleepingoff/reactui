@@ -79,7 +79,6 @@ const ReactiveTextarea = ({
         const currentLines = Math.ceil(byteOfcurrentText / (maxColsLength + 2));
         elem.rows += lines === currentLines ? 0 : 1;
         setLines(currentLines);
-        console.log(currentText, byteOfcurrentText, maxColsLength, elem.cols);
       }
       if (maxRows && maxRowsLength >= maxRows) {
         elem.rows = maxRows;
@@ -105,30 +104,6 @@ const ReactiveTextarea = ({
     []
   );
 
-  const calcCurrentRows = useMemo(
-    () => (value: string) => {
-      const ArrayOfBetweenEnterValues = value.split(/\r\n|\r|\n/);
-      const ArrayOfLength = ArrayOfBetweenEnterValues.map(
-        values => +values.length
-      );
-
-      const filteredTextLengthOverMaxCols = ArrayOfLength.filter(
-        length => length > maxColsLength
-      );
-      //이전에 계산했던 줄까지 다시 계산
-      const textLengthOverMaxCols = filteredTextLengthOverMaxCols.reduce(
-        (_, current) => {
-          const rowsOverMaxCols = Math.ceil(current / maxColsLength);
-          console.log(rowsOverMaxCols);
-          return rowsOverMaxCols;
-        },
-        ArrayOfBetweenEnterValues.length
-      );
-      return textLengthOverMaxCols;
-    },
-    []
-  );
-
   const handleKeyEnter: (
     textareaRef: React.RefObject<HTMLTextAreaElement> | null
   ) => React.KeyboardEventHandler<HTMLTextAreaElement> =
@@ -141,8 +116,6 @@ const ReactiveTextarea = ({
           setMaxCols(calcedMaxCols);
         }
         if (vertical && maxRows && maxRows > maxRowsLength) {
-          const currentRows = calcCurrentRows(value);
-          setMaxRowsLength(prev => prev + currentRows);
           textareaRef.current.rows++;
         }
       }
