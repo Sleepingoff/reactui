@@ -1,0 +1,19 @@
+@import '/src/assets/design/variables.scss';
+
+.textarea {
+  display: inline-block;
+  resize: none;
+  vertical-align: top;
+  padding: $round-default;
+  width: fit-content;
+  height: fit-content;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  &.max::-webkit-scrollbar {
+    width: auto;
+    height: auto;
+  }
+}
