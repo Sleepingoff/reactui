@@ -1,6 +1,6 @@
-# READme
+# React UI
 
-## React UI
+
 
 다양한 UI들을 리액트로 만들기
 

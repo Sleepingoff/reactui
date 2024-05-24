@@ -1,3 +1,3 @@
 # Table of contents
 
-* [READme](README.md)
+* [React UI](README.md)
