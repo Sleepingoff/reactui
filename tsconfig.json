@@ -29,5 +29,6 @@
     }
   },
   "include": ["src"],
+  "exclude": ["**/*.stroies.tsx", "**/*.md"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

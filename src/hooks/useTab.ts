@@ -4,7 +4,7 @@ import { TabContextType } from '@/types/Context/TabContext';
 const TabContextValue: TabContextType = {
   list: [],
   current: '',
-  actions: { handler: () => event => ({}) }
+  actions: { handler: () => () => ({}) }
 };
 const TabContext = createContext(TabContextValue);
 const useTab = () => {

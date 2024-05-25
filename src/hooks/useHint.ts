@@ -4,7 +4,7 @@ import { HintnContextType } from '@/types/Context/HintContext';
 const InitialContextValue: HintnContextType = {
   show: false,
   actions: {
-    handler: (show: boolean) => e => {}
+    handler: (_show: boolean) => () => {}
   }
 };
 const HintContext = createContext(InitialContextValue);

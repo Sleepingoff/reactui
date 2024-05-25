@@ -6,7 +6,7 @@ const contextValue: AccordionContextType = {
   open: false,
   disabled: false,
   actions: {
-    handleClickDetails: event => {}
+    handleClickDetails: () => {}
   }
 };
 const AccordionContext = createContext(contextValue);

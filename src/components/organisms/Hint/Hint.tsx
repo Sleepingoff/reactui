@@ -1,15 +1,8 @@
-import React, {
-  Component,
-  MouseEventHandler,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
+import { MouseEventHandler, useMemo, useState } from 'react';
 import TipBox from '../TipBox/TipBox';
 import Wrapper from '@/components/atoms/Wrapper/Wrapper';
 import Button from '@/components/atoms/Button/Button';
 
-import styles from './Hint.module.scss';
 import Prop from '@/types/Prop';
 import useHint, { HintContext } from '@/hooks/useHint';
 import Tooltips from '@/components/molecules/Tooltips/Tooltips';
@@ -50,7 +43,7 @@ const Popovertips = ({ position, children, ...props }: HintType) => {
     () => ({
       handler:
         (show: boolean): MouseEventHandler =>
-        e => {
+        () => {
           setShow(!show);
         }
     }),

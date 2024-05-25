@@ -1,7 +1,28 @@
 {
-  "name": "reactui",
-  "private": true,
+  "name": "react-simple-ui",
+  "description": "simple ui for react",
+  "keywords": [],
+  "author": {
+    "name": "Sleepingoff",
+    "email": "justjh30@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sleepingoff/reactui"
+  },
+  "private": false,
   "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "module": "./dist/index.es.js",
+      "import": "./dist/index.es.js",
+      "default": "./dist/index.cjs.js"
+    }
+  },
   "type": "module",
   "resolutions": {
     "wrap-ansi": "7.0.0",
@@ -14,7 +35,10 @@
     "preview": "vite preview",
     "token-transfer": "node design.js",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "rm -rf dist && tsc && vite build",
+    "clean:package": "yarn remove react-simple-ui && yarn cache clean && rm -rf ./react-simple-ui-v0.0.0.tgz",
+    "add:package": "yarn add ./react-simple-ui-v0.0.0.tgz"
   },
   "dependencies": {
     "@storybook/addon-controls": "^8.0.9",

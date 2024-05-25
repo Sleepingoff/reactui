@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Wrapper from '@/components/atoms/Wrapper/Wrapper';
 import Button from '@/components/atoms/Button/Button';
 import Panel from '@/components/molecules/Panel/Panel';
